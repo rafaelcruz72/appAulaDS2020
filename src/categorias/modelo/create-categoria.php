@@ -32,7 +32,7 @@ if(!$conexao){
          if($resultado){
             $dados = array(
                 'tipo' => 'sucsess',
-                'mensagem' => 'Categoria creada com sucesso.'
+                'mensagem' => 'Categoria criada com sucesso.'
             );
          } else{
             $dados = array(
