@@ -31,7 +31,7 @@ if(!$conexao){
 
          if($resultado){
             $dados = array(
-                'tipo' => 'sucsess',
+                'tipo' => 'success',
                 'mensagem' => 'Categoria criada com sucesso.'
             );
          } else{

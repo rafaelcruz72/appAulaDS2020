@@ -1,0 +1,63 @@
+.form-center {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100vh;
+    width: 100%;
+}
+
+a {
+    cursor: pointer;
+}
+
+.text-agua {
+    color: #211c5c !important;
+}
+
+.table .thead-agua th {
+    color: #fff;
+    background-color: #211c5c;
+    border-color: #32383e;
+}
+
+.bg-agua {
+    background-color: #211c5c !important;
+}
+
+.btn-agua {
+    color: #fff;
+    background-color: #211c5c;
+    border-color: #211c5c;
+}
+
+.btn-agua:hover {
+    color: #fff;
+    background-color: #29227a;
+    border-color: #29227a;
+}
+
+.btn-agua:focus,
+.btn-agua.focus {
+    box-shadow: 0 0 0 0.2rem rgba(4, 0, 255, 0.5);
+}
+
+.modal-loading {
+    background: transparent !important;
+}
+
+.mt-n-10 {
+    margin-top: -10px;
+}
+
+.modal-loading {
+    background: transparent !important;
+}
+
+.m-ctr {
+    margin-top: 7em;
+}
+
+.mt-n2 {
+    margin-top: -0.5rem;
+}
