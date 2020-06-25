@@ -20,11 +20,15 @@ if(!$conexao){
 
         //$requestaData = array_map('utf8_decode', $requestaData);
 
+        echo $requestaData['dataagora'];
+
         $requestaData['ativo'] = $requestaData['ativo'] == "on" ? "S" : "N";
 
         $requestaData['dataagora'] = date('Y-d-m H:i:s', strtotime($requestaData['dataagora']));
 
-        $sqlComando = "INSERT INTO CATEGORIAS(nome, ativo, datacriacao, datamodificacao)
+        echo $requestaData['dataagora'];
+
+        $sqlComando = "INSERT INTO categorias (nome, ativo, datacriacao, datamodificacao)
          VALUES ('$requestaData[nome]', '$requestaData[ativo]', '$requestaData[dataagora]', '$requestaData[dataagora]')";
 
          $resultado = mysqli_query($conexao, $sqlComando);
@@ -37,7 +41,7 @@ if(!$conexao){
          } else{
             $dados = array(
                 'tipo' => 'error',
-                'mensagem' => 'Não foi possível criar a categoria.'
+                'mensagem' => 'Não foi possível criar a categoria.'.mysqli_error($conexao)
             );
          }
     }
