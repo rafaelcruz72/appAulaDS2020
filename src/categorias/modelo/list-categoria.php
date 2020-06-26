@@ -4,28 +4,44 @@
 
     if($conexao){
 
-        $requestData = $_REQUEST;
+        $resquestData = $_REQUEST;
 
-        $colunas = $requestData['columns'];
+        $colunas = $resquestData['columns'];
 
         $sql = "SELECT IDCATEGORIA, NOME, ATIVO, DATAMODIFICACAO FROM CATEGORIAS WHERE 1=1 ";
         $resultado = mysqli_query($conexao, $sql);
         $qtdeLinhas = mysqli_num_rows($resultado);
 
-        if(!empty($requestData['search']['value'])){
+        if(!empyt($resquestData['search']['value'])){
 
-            $sql .= " AND (IDCATEGORIA LIKE '$requestData[search][value])%' ";
-            $sql .= " OR NOME LIKE '$requestData[search][value])%' )";
+            $sql .= " AND (IDCATEGORIA LIKE '$resquestData[search][value])%' ";
+            $sql .= " OR NOME LIKE '$resquestData[search][value])%')";
         }
 
         $resultado = mysqli_query($conexao, $sql);
         $totalFiltrados = mysqli_num_rows($resultado);
 
-        $colunaOrdem = $requestData['order'][0]['column'];
+        $colunaOrdem = $resquestData['order'][0]['column'];
         $ordem = $colunas[$colunaOrdem];
-        $direcao = $requestData['order'][0]['dir'];
+        $direcao = $resquestData['order'][0]['dir'];
 
+        $sql .= " ORDER BY $ordem $direcao LIMIT $resquestData[start], $resquestData[length] ";
 
+        $resultado = mysqli_query($conexao, $sql);
+
+        $dados = array();
+        while($linha = mysqli_fetch_assoc($resultado)){
+            $dados[] = array_map('utf8_encode', $linha);
+        }
+
+        $json_data = array(
+            "draw" => intval($resquestData['draw']),
+            "recordsTotal" => intval($qtdeLinhas),
+            "recordsFiltered" => intval($totalFiltrados),
+            "data" => $dados
+        );
+
+        mysqli_close($conexao);
 
     } else{
         $json_data = array(
@@ -36,5 +52,4 @@
         );
     }
 
-    echo json_encode($json_data, JSON_UNDESCAPED_SLASHES, JSON_UNDESCAPED_UNICODE);
-
+    echo json_encode($json_data, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
