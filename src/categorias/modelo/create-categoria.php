@@ -20,13 +20,9 @@ if(!$conexao){
 
         //$requestaData = array_map('utf8_decode', $requestaData);
 
-        echo $requestaData['dataagora'];
-
         $requestaData['ativo'] = $requestaData['ativo'] == "on" ? "S" : "N";
 
         $requestaData['dataagora'] = date('Y-d-m H:i:s', strtotime($requestaData['dataagora']));
-
-        echo $requestaData['dataagora'];
 
         $sqlComando = "INSERT INTO categorias (nome, ativo, datacriacao, datamodificacao)
          VALUES ('$requestaData[nome]', '$requestaData[ativo]', '$requestaData[dataagora]', '$requestaData[dataagora]')";
