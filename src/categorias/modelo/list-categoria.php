@@ -8,26 +8,30 @@
 
         $colunas = $requestData['columns'];
 
-        $sql = "SELECT IDCATEGORIA, NOME, ATIVO, DATAMODIFICACAO FROM CATEGORIAS WHERE 1=1 ";
+        $sql = "SELECT idcategoria, nome, date_format(datamodificacao,'%d/%m/%Y %H:%i:%s') as datamodificacao, ativo FROM CATEGORIAS WHERE 1=1 ";
         $resultado = mysqli_query($conexao, $sql);
         $qtdeLinhas = mysqli_num_rows($resultado);
 
-        if(!empty($requestData['search']['value'])){
+        $filtro = $requestData['search']['value'];
+        if(!empty($filtro)){
 
-            $sql .= " AND (IDCATGORIA LIKE '$requestData[search][value]%' ";
-            $sql .= " OR NOME LIKE '$requestData[search][value]%') ";
+            $sql .= " AND (IDCATEGORIA LIKE '$filtro%' ";
+            $sql .= " OR NOME LIKE '$filtro%') ";
         }
 
         $resultado = mysqli_query($conexao, $sql);
         $totalFiltrados = mysqli_num_rows($resultado);
 
-        $colunaOrdem = $resultado['order'][0]['column'];
-        $ordem = $clounas[$colunaOrdem];
-        $direcao = $resquestData['order'][0]['dir'];
+        $colunaOrdem = $requestData['order'][0]['column'];
+        $ordem = $colunas[$colunaOrdem]['data'];
+        $direcao = $requestData['order'][0]['dir'];
 
-        $sql .= " ORDER BY $ordem $direcao LIMIT $requestData[start], $requestData[length]";
+        $inicio = $requestData['start'];
+        $tamanho = $requestData['length'];
 
-        $resultado = mysqi_query($conexao, $sql);
+        $sql .= " ORDER BY $ordem $direcao LIMIT $inicio, $tamanho";
+
+        $resultado = mysqli_query($conexao, $sql);
 
         $dados = array();
         while($linha = mysqli_fetch_assoc($resultado)){
