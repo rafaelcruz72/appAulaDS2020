@@ -29,7 +29,7 @@ if(!$conexao){
         $date = date_create_from_format('d/m/Y H:i:s', $requestData['dataagora']);
         $requestData['dataagora'] = date_format($date, 'Y-m-d H:i:s');
 
-        $sqlComando = "UPDATE CATEGORIAS SET NOME = '$requestData[nome]', ATIVO = '$requestData[ativo]', DATAMODIFICACAO = '$requestData[dataagora]'  WHERE IDCATEGORIA = $id";
+        $sqlComando = "UPDATE categorias SET nome = '$requestData[nome]', ativo = '$requestData[ativo]', datamodificacao = '$requestData[dataagora]'  WHERE idcategoria = $id ";
 
         $resultado = mysqli_query($conexao, $sqlComando);
 

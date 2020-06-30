@@ -15,8 +15,8 @@
         $filtro = $requestData['search']['value'];
         if(!empty($filtro)){
 
-            $sql .= " AND (IDCATEGORIA LIKE '$filtro%' ";
-            $sql .= " OR NOME LIKE '$filtro%') ";
+            $sql .= " AND (idcategoria LIKE '$filtro%' ";
+            $sql .= " OR nome LIKE '$filtro%') ";
         }
 
         $resultado = mysqli_query($conexao, $sql);
