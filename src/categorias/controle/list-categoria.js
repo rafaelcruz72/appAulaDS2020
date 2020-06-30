@@ -23,7 +23,12 @@ $(document).ready(function() {
             },
             {
                 "data": "ativo",
-                "className": "text-center"
+                "orderable": false,
+                "serchable": false,
+                "className": "text-center",
+                "render": function(data, type, row, meta) {
+                    return data == 'S' ? 'Ativo' : 'Não Ativo'
+                }
             },
             {
                 "data": "idcategoria",

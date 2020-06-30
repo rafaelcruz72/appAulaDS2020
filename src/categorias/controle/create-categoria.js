@@ -25,6 +25,7 @@ $(document).ready(function() {
                 })
 
                 $('#modal-categoria').modal('hide')
+                $('#table-categoria').DataTable().ajax.reload()
             }
         })
     })
