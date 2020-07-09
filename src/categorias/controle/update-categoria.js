@@ -10,6 +10,10 @@ $(document).ready(function() {
             }
         })
 
+        const datamodificacao = new Date().toLocaleString()
+
+        dados += `&datamodificacao=${datamodificacao}`
+
         $.ajax({
             type: 'POST',
             dataType: 'json',
