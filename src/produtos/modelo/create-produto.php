@@ -16,7 +16,7 @@
         if(!empty($requestData['nome']) &&
            !empty($requestData['descricao']) &&
            !empty($requestData['ativo']) &&
-           !empty($_FILES['imagem']) && $_FILES['imagem']['error'] != 0 //qualquer valor diferente de 0, indica que a imagem está com erro
+           !empty($imagem) && $imagem['error'] != 0 //qualquer valor diferente de 0, indica que a imagem está com erro
         ){
 
             //Tratamento dos campos vindo da requisição
@@ -25,14 +25,15 @@
             //converte o formato da data para o padrão MySQL
             $dataAgora = str_replace('/','-',$requestData['dataagora']); //troca o caracter '/' para '-'
             $dataAgora = date('Y-m-d H:i:s', srttotime($dataAgora)); //cria uma nova data a partir da data vindo da requisição, com o formato do MySQL
+            $requestData['ativo'] = $requestData['ativo'] == "on" ? 'S' : 'N';
 
             //preparar o processo de upload
             $pasta = "imagens/"; //determina o nome da pasta de destino das imagens
             //verifica se a pasta em questão não existe no servidor, caso não exista, cria a pasta e aplica as permissões de leitura e gravação
             if(!file_exists($pasta)) mkdir($pasta, 0755);
 
-            $nomeTemporario = $_FILES['imagem']['tmp_name']; //obtém o nome temporário da imagem
-            $nomeArquivo = $_FILES['imagem']['name']; //obtém o nome original da imagem
+            $nomeTemporario = $imagem['tmp_name']; //obtém o nome temporário da imagem
+            $nomeArquivo = $imagem['name']; //obtém o nome original da imagem
             $extensao = pathinfo($nomeArquivo, PATHINFO_EXTENSION); //obtém a extensão do nome da imagem. A função pathinfo retorna infomações sobre o arquivo
             $extensao = strtolower($extensao); //converte a extensão para minúsculo
             $tipoArquivo = array('jpg', 'jpeg', 'png', 'gif'); //cria um array contendo os tipos de imagens válidas para o projeto
