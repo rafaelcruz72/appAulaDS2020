@@ -3,7 +3,7 @@ $(document).ready(function() {
     $('#table-categoria').on('click', 'button.btn-delete', function(e) {
         e.preventDefault()
 
-        let idcategoria = `idcategoria=${$(this).attr('id')}`
+        let idproduto = `idproduto=${$(this).attr('id')}`
 
         Swal.fire({
             title: 'appAulaDS',
@@ -18,7 +18,7 @@ $(document).ready(function() {
                     type: 'POST',
                     dataType: 'json',
                     assync: true,
-                    data: idcategoria,
+                    data: idproduto,
                     url: 'src/categorias/modelo/delete-categoria.php',
                     success: function(dados) {
                         Swal.fire({

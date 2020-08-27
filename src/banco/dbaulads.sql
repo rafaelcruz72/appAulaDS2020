@@ -28,19 +28,19 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE IF NOT EXISTS `categorias` (
-  `idcategoria` int(11) NOT NULL AUTO_INCREMENT,
+  `idproduto` int(11) NOT NULL AUTO_INCREMENT,
   `nome` varchar(60) NOT NULL,
   `ativo` varchar(1) NOT NULL,
   `datacriacao` datetime NOT NULL,
   `datamodificacao` datetime NOT NULL,
-  PRIMARY KEY (`idcategoria`)
+  PRIMARY KEY (`idproduto`)
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 
 --
 -- Extraindo dados da tabela `categorias`
 --
 
-INSERT INTO `categorias` (`idcategoria`, `nome`, `ativo`, `datacriacao`, `datamodificacao`) VALUES
+INSERT INTO `categorias` (`idproduto`, `nome`, `ativo`, `datacriacao`, `datamodificacao`) VALUES
 (1, 'LIMPEZA', 'S', '2020-06-12 00:00:00', '2020-06-12 00:00:00'),
 (2, 'HIGIENE', 'N', '2020-06-12 00:00:00', '2020-06-12 00:00:00'),
 (3, 'PADARIA', 'S', '1970-01-01 01:00:00', '1970-01-01 01:00:00'),
@@ -113,12 +113,12 @@ CREATE TABLE IF NOT EXISTS `produtos` (
   `estoque_min` int(11) NOT NULL,
   `valor` decimal(7,2) NOT NULL,
   `ativo` char(1) NOT NULL,
-  `idcategoria` int(11) NOT NULL,
+  `idproduto` int(11) NOT NULL,
   `imagem` varchar(255) DEFAULT NULL,
   `datacriacao` datetime NOT NULL,
   `datamodificacao` datetime NOT NULL,
   PRIMARY KEY (`idproduto`),
-  KEY `fk_produtos_categorias_idx` (`idcategoria`)
+  KEY `fk_produtos_categorias_idx` (`idproduto`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -154,7 +154,7 @@ ALTER TABLE `itens_venda`
 -- Limitadores para a tabela `produtos`
 --
 ALTER TABLE `produtos`
-  ADD CONSTRAINT `fk_produtos_categorias` FOREIGN KEY (`idcategoria`) REFERENCES `categorias` (`idcategoria`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_produtos_categorias` FOREIGN KEY (`idproduto`) REFERENCES `categorias` (`idproduto`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Limitadores para a tabela `vendas`

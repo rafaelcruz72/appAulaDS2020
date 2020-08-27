@@ -22,7 +22,7 @@
             $dataAgora = date('Y-m-d H:i:s', srttotime($dataAgora)); //cria uma nova data a partir da data vindo da requisição, com o formato do MySQL
             $requestData['ativo'] = $requestData['ativo'] == "on" ? 'S' : 'N';
 
-            $sql = "UPDATE produtos SET nome = '$requestData[nome]', descricao = '$requestData[descricao]', estoque = '$requestData[estoque]', estoque_min = '$requestData[estoque_min]', valor = '$requestData[valor]', ativo = '$requestData[ativo]', idcategoria = '$requestData[idcategoria]', datamodificacao = '$dataAgora' WHERE idproduto = $id";
+            $sql = "UPDATE produtos SET nome = '$requestData[nome]', descricao = '$requestData[descricao]', estoque = '$requestData[estoque]', estoque_min = '$requestData[estoque_min]', valor = '$requestData[valor]', ativo = '$requestData[ativo]', idproduto = '$requestData[idproduto]', datamodificacao = '$dataAgora' WHERE idproduto = $id";
 
             $resultado = mysqli_query($conexao, $sql);
 

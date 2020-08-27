@@ -8,13 +8,13 @@ $(document).ready(function() {
 
         $('.modal-title').append('Edição de categoria')
 
-        let idcategoria = `idcategoria=${$(this).attr('id')}`
+        let idproduto = `idproduto=${$(this).attr('id')}`
 
         $.ajax({
             type: 'POST',
             dataType: 'JSON',
             assync: true,
-            data: idcategoria,
+            data: idproduto,
             url: 'src/categorias/modelo/view-categoria.php',
             success: function(dado) {
                 if (dado.tipo == "success") {
@@ -26,7 +26,7 @@ $(document).ready(function() {
                             $('#ativo').removeAttr('checked')
                         }
 
-                        $('#idcategoria').val(dado.dados.idcategoria)
+                        $('#idproduto').val(dado.dados.idproduto)
 
                     })
                     $('.btn-save').hide()

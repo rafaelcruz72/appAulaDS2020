@@ -33,7 +33,7 @@
             $dados = array(
                 "tipo" => "error",
                 "mensagem" => "Não foi possível localizar o produto",
-                "dados" => array()
+                "dados" => mysqli_error($conexao) //array()
             );
         }
     } else {

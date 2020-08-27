@@ -7,6 +7,12 @@
 
         $requestData = $_REQUEST;
 
+        // echo '<pre>';
+        // print_r($requestData);
+        // echo '</pre>';
+
+        // exit;
+
         $colunas = $requestData['columns'];
 
         $sql = "SELECT idcategoria, nome, date_format(datamodificacao,'%d/%m/%Y %H:%i:%s') as datamodificacao, ativo FROM categorias WHERE 1=1 ";
