@@ -1,0 +1,1 @@
+curl.exe -i -v http://localhost/appAulaDS2020/src/produtos/modelo/view-produto.php -d "idproduto=2"

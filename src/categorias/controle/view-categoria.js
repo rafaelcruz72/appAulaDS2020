@@ -8,15 +8,19 @@ $(document).ready(function() {
 
         $('.modal-title').append('Visualização de categoria')
 
-        let idproduto = `idproduto=${$(this).attr('id')}`
+        let idcategoria= `idcategoria=${$(this).attr('id')}`
+
+        console.log('passou aqui')
 
         $.ajax({
             type: 'POST',
             dataType: 'JSON',
             assync: true,
-            data: idproduto,
+            data: idcategoria,
             url: 'src/categorias/modelo/view-categoria.php',
             success: function(dado) {
+                console.log(dado)
+                console.log('passou aqui')
                 if (dado.tipo == "success") {
                     $('.modal-body').load('src/categorias/visao/form-categoria.html', function() {
                         $('#nome').val(dado.dados.nome)

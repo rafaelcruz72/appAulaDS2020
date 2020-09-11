@@ -30,4 +30,10 @@
         $dados = array("tipo" => "info","mensagem" => "Não possível conecar ao banco de dados","dados" => array());
     }
 
+    $outro = array(
+        "id" => 1
+    );
+
     echo json_encode($dados, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
+
+    //echo json_encode($outro);

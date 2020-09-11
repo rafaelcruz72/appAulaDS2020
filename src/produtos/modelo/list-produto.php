@@ -6,6 +6,11 @@
 
         $requestData = $_REQUEST;
 
+        // echo "<pre>";
+        // print_r($requestData);
+        // echo '</pre>';
+        // exit;
+
         $colunas = $requestData['columns'];
 
         $sql = "SELECT p.idproduto, p.nome,  

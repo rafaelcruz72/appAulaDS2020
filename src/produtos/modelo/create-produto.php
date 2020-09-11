@@ -12,11 +12,23 @@
         //obtém os dados da imagem
         $imagem = $_FILES['imagem'];
 
+        // echo '<pre>';
+        // print_r($_FILES);
+        // echo '</pre>';
+    
+        // echo '<br>';
+    
+        // echo '<pre>';
+        // print_r($_REQUEST);
+        // echo '</pre>';
+
+        // exit;
+
         //verifica se existem algum campo obrigatório vazio e incluse a imagem do produto
         if(!empty($requestData['nome']) &&
            !empty($requestData['descricao']) &&
            !empty($requestData['ativo']) &&
-           !empty($imagem) && $imagem['error'] != 0 //qualquer valor diferente de 0, indica que a imagem está com erro
+           !empty($imagem) && $imagem['error'] == 0 //qualquer valor diferente de 0, indica que a imagem está com erro
         ){
 
             //Tratamento dos campos vindo da requisição
@@ -24,7 +36,7 @@
             //$requestData = array_map('utf8_decode', $requestData);
             //converte o formato da data para o padrão MySQL
             $dataAgora = str_replace('/','-',$requestData['dataagora']); //troca o caracter '/' para '-'
-            $dataAgora = date('Y-m-d H:i:s', srttotime($dataAgora)); //cria uma nova data a partir da data vindo da requisição, com o formato do MySQL
+            $dataAgora = date('Y-m-d H:i:s', strtotime($dataAgora)); //cria uma nova data a partir da data vindo da requisição, com o formato do MySQL
             $requestData['ativo'] = $requestData['ativo'] == "on" ? 'S' : 'N';
 
             //preparar o processo de upload
